@@ -1,0 +1,68 @@
+<div>
+  <div class="filtreTableauUtilisateur">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+    </mat-form-field>
+  </div>
+
+  <mat-table class="filtreTableauUtilisateur" #table [dataSource]="dataSourceUtilisateur" matSort>
+    <!-- Colonne Nom -->
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+      <mat-cell *matCellDef="let utilisateur"> {{utilisateur.nom}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne Prenom -->
+    <ng-container matColumnDef="prenom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </mat-header-cell>
+      <mat-cell *matCellDef="let utilisateur"> {{utilisateur.prenom}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne idrh -->
+    <ng-container matColumnDef="idrh">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> IdRH </mat-header-cell>
+      <mat-cell *matCellDef="let utilisateur"> {{utilisateur.idrh}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne fonction -->
+    <ng-container matColumnDef="fonction">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fonction </mat-header-cell>
+      <mat-cell *matCellDef="let utilisateur"> {{utilisateur.fonction}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"[ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="highlight(row)"></mat-row>
+  </mat-table>
+</div>
+
+<form #utilisateurForm="ngForm" (ngSubmit)="onSubmit(utilisateurForm)">
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Nom" required name="utilisateur_nom" [(ngModel)]="utilisateur.nom">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Prénom" required name="utilisateur_prenom" [(ngModel)]="utilisateur.prenom">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Fonction" required name="utilisateur_fonction" [(ngModel)]="utilisateur.fonction">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Mot de passe" required name="utilisateur_mdp" [(ngModel)]="utilisateur.mdp">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <mat-select placeholder="Fonction" required name="utilisateur_fonction" [(ngModel)]="utilisateur.fonction">
+      <mat-option *ngFor="let fonction of fonctions" [value]="fonction.value">
+        {{ fonction.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+    <button class="mat-raised-button mat-primary" type="submit" [disabled]="!utilisateurForm.valid">{{edition ? 'Modifier' : 'Créer'}}</button>
+    </form>
+
+    <br>
+    <button mat-raised-button (click)="cancelSelect()">Effacer</button>
+    <button mat-raised-button (click)="supprimerUtilisateur()">Supprimer</button>

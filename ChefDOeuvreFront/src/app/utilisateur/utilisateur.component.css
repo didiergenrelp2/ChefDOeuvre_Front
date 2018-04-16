@@ -1,0 +1,38 @@
+.utilisateurForm {    
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.inputFullWidth{
+    width: 100%;
+}
+
+.filtreTableauUtilisateur {    
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    width: 50%;
+}
+@media (max-width:500px){
+    .filtreTableauUtilisateur {
+        display: flex;
+        flex-direction: column;
+        min-width: 300px;
+        width: 100%;
+      }
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.highlight{
+    background:  #2BA09E;
+  }

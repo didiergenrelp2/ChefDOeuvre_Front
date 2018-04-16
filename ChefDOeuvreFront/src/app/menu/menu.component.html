@@ -1,0 +1,11 @@
+<div class="mat-display-1" fxLayoutAlign="center">
+  <h2>Gestock</h2>
+</div>
+
+<mat-nav-list>
+  <mat-list>
+    <mat-list-item routerLinkActive="active" routerLink="/bureaux" (click)="sideNavService.toggleNav()">Bureaux</mat-list-item>
+    <mat-list-item routerLinkActive="active" routerLink="/materiels" (click)="sideNavService.toggleNav()">Matériel</mat-list-item>
+    <mat-list-item routerLinkActive="active" routerLink="/utilisateurs" (click)="sideNavService.toggleNav()">Utilisateurs</mat-list-item>
+  </mat-list>
+</mat-nav-list>

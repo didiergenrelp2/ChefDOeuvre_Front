@@ -1,0 +1,28 @@
+.bouton-accueil {
+    width: 200px;
+}
+
+.div-image {
+    display: flex;
+    justify-content: center;
+    margin: 2em;
+    /*border: 2px solid;
+    border-color: blue;*/
+}
+.bloc-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 2px solid;
+    border-color: blue;*/
+    
+}
+@media (max-width : 500px){
+    .bouton-accueil {
+        width: 100px;
+    }
+}
+
+.aCliquable{
+    cursor: pointer;
+}

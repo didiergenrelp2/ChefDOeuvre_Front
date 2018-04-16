@@ -1,0 +1,81 @@
+<div>
+  <div class="filtreTableauBureau">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+    </mat-form-field>
+  </div>
+
+  <mat-table class="filtreTableauBureau" #table [dataSource]="dataSourceBureau" matSort>
+
+    <!-- Colonne Nom -->
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+      <mat-cell *matCellDef="let bureau"> {{bureau.nom_bureau}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne Code Régate -->
+    <ng-container matColumnDef="code_regate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code Régate </mat-header-cell>
+      <mat-cell *matCellDef="let bureau"> {{bureau.code_regate}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne adresse -->
+    <ng-container matColumnDef="adresse">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </mat-header-cell>
+      <mat-cell *matCellDef="let bureau"> {{bureau.adresse}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne Code Postal -->
+    <ng-container matColumnDef="code_postal">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code Postal </mat-header-cell>
+      <mat-cell *matCellDef="let bureau"> {{bureau.code_postal}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne ville -->
+    <ng-container matColumnDef="ville">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Ville </mat-header-cell>
+        <mat-cell *matCellDef="let bureau"> {{bureau.ville}} </mat-cell>
+      </ng-container>
+
+      <!-- Colonne telephone -->
+    <ng-container matColumnDef="telephone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Téléphone </mat-header-cell>
+        <mat-cell *matCellDef="let bureau"> {{bureau.telephone}} </mat-cell>
+      </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"[ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="highlight(row)"></mat-row>
+  </mat-table>
+</div>
+
+<form #bureauForm="ngForm" (ngSubmit)="onSubmit(bureauForm)">
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Nom" required name="bureau_nom" [(ngModel)]="bureau.nom_bureau">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Code Régate" required name="bureau_code_regate" [(ngModel)]="bureau.code_regate">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Adresse" required name="bureau_adresse" [(ngModel)]="bureau.adresse">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Code Postal" required name="bureau_code_postal" [(ngModel)]="bureau.code_postal">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Ville" required name="bureau_ville" [(ngModel)]="bureau.ville">
+  </mat-form-field>
+  
+  <mat-form-field class="inputFullWidth">
+      <input matInput placeholder="Téléphone" required name="bureau_telephone" [(ngModel)]="bureau.telephone">
+    </mat-form-field>
+
+    <button class="mat-raised-button mat-primary" type="submit" [disabled]="!bureauForm.valid">{{edition ? 'Modifier' : 'Créer'}}</button>
+    </form>
+
+    <br>
+    <button mat-raised-button (click)="cancelSelect()">Effacer</button>
+    <button mat-raised-button (click)="supprimerMaterielDuBureau()">Supprimer</button>
