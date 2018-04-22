@@ -1,5 +1,5 @@
 h2{
-    margin: 5%;
+    margin: 10%;
 }
 
 a{
@@ -8,7 +8,5 @@ a{
 }
 
 @media (max-width: 500px){
-    .image-voiture{
-        width: 250px;
-    }
+    
 }

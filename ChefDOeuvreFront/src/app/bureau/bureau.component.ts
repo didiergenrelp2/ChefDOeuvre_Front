@@ -8,6 +8,10 @@ import {
 } from '@angular/material';
 
 import { BureauService } from '../bureau.service';
+import { MaterielService } from '../materiel.service';
+import { Imateriel } from '../imateriel';
+import { PoserMaterielDansBureauComponent } from '../poser-materiel-dans-bureau/poser-materiel-dans-bureau.component';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-bureau',
@@ -16,13 +20,13 @@ import { BureauService } from '../bureau.service';
 })
 export class BureauComponent implements OnInit {
   bureau: Ibureau;
+  materiel: Imateriel[];
   selectedRowIndex = -1;
-  edition = false;
+  selectionBureau = false;
 
   constructor(
     private bureauService: BureauService,
-    public dialog: MatDialog,
-    public dialog2: MatDialog
+    public dialog: MatDialog
   ) { }
 
   displayedColumns = [
@@ -33,9 +37,9 @@ export class BureauComponent implements OnInit {
     'ville',
     'telephone'
   ];
-dataSourceBureau = new MatTableDataSource();
+  dataSourceBureau = new MatTableDataSource();
 
-@ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -45,14 +49,14 @@ dataSourceBureau = new MatTableDataSource();
 
   ngOnInit() {
     this.bureau = {
-    id_bureau: null,
-    nom_bureau: '',
-    code_regate: '',
-    adresse: '',
-    code_postal: '',
-    ville: '',
-    telephone: '',
-    materiel: []
+      id_bureau: null,
+      nom_bureau: '',
+      code_regate: '',
+      adresse: '',
+      code_postal: '',
+      ville: '',
+      telephone: '',
+      materiel: []
     };
     this.refreshTab();
 
@@ -61,42 +65,49 @@ dataSourceBureau = new MatTableDataSource();
 
   refreshTab() {
     this.bureauService
-      .getBureau()
+      .recupererBureaux()
       .subscribe((data: Ibureau[]) => {
         this.dataSourceBureau = new MatTableDataSource(data);
         this.dataSourceBureau.sort = this.sort;
       });
-    }
-      highlight(row) {
-        this.selectedRowIndex = row.id;
-        this.bureau = Object.assign({}, row);
-        this.edition = true;
-      }
-    
-      cancelSelect() {
-        this.selectedRowIndex = -1;
-        this.edition = false;
-        this.clearInput();
-      }
-    
-     /* onSubmit() {
-        if (this.edition) {
-          this.bureauService.updateBureau(this.bureau).subscribe();
-        } else {
-          this.bureauService.createBureau(this.bureau).subscribe();
-        }
-      }
-      */
-      clearInput() {
-        this.bureau = {
-          id_bureau: null,
-          nom_bureau: '',
-          code_regate: '',
-          adresse: '',
-          code_postal: '',
-          ville: '',
-          telephone: '',
-          materiel: []
-        };
-      }
-    }
+  }
+  highlight(row) {
+    this.selectedRowIndex = row.id_bureau;
+    this.bureau = Object.assign({}, row);
+    this.selectionBureau = true;
+  }
+
+  cancelSelect() {
+    this.selectedRowIndex = -1;
+    this.selectionBureau = false;
+    this.clearInput();
+  }
+
+  /* onSubmit() {
+     if (this.selectionBureau) {
+       this.bureauService.updateBureau(this.bureau).subscribe();
+     } else {
+       this.bureauService.createBureau(this.bureau).subscribe();
+     }
+   }
+   */
+  clearInput() {
+    this.bureau = {
+      id_bureau: null,
+      nom_bureau: '',
+      code_regate: '',
+      adresse: '',
+      code_postal: '',
+      ville: '',
+      telephone: '',
+      materiel: []
+    };
+  }
+
+  poserMaterielDansBureau() {
+    this.dialog.open(PoserMaterielDansBureauComponent, {
+      width: '800px',
+      data: this.bureau.id_bureau
+    });
+  }
+}

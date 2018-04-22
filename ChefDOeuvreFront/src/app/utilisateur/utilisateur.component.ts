@@ -24,12 +24,12 @@ export class UtilisateurComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSourceUtilisateur.filter = filterValue;
   }
-//TODO mettre les valeurs avec des nombres ?
+//TODO afficher les viewvalues dans le tableau
   fonctions = [
-    {value: 'ADMIN', viewValue: 'Administrateur'},
-    {value: 'CHEFPROJET', viewValue: 'Chef de Projet'},
-    {value: 'MAGASINIER', viewValue: 'Magasinier'},
-    {value: 'TECHNICIEN', viewValue: 'technicien'}
+    {value: '0', viewValue: 'Administrateur'},
+    {value: '1', viewValue: 'Chef de Projet'},
+    {value: '2', viewValue: 'Magasinier'},
+    {value: '3', viewValue: 'Technicien'}
   ];
 
   @ViewChild(MatSort) sort: MatSort;
@@ -50,10 +50,9 @@ export class UtilisateurComponent implements OnInit {
   }
 
   highlight(row){
-    this.selectedRowIndex = row.id;
-    console.log(row.id);
-    this.edition=true;
+    this.selectedRowIndex = row.id_utilisateur;
     this.utilisateur=Object.assign({},row);
+    this.edition=true;
   }
 
   onSubmit(){
@@ -72,7 +71,7 @@ export class UtilisateurComponent implements OnInit {
 
   clearInput(){
     this.utilisateur={
-      id:0,
+      id_utilisateur:0,
       nom:'',
       prenom:'',
       idrh:'',
@@ -83,7 +82,7 @@ export class UtilisateurComponent implements OnInit {
 
   supprimerUtilisateur(){
     this.edition=false;
-    this.utilisateurService.supprimerUtilisateur(this.utilisateur.id).subscribe();
+    this.utilisateurService.supprimerUtilisateur(this.utilisateur.id_utilisateur).subscribe();
     this.clearInput();
   }
 }

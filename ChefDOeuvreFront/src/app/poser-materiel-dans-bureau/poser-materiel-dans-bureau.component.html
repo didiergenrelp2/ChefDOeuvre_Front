@@ -1,0 +1,79 @@
+<h2 mat-dialog-title>Choisissez le matériel à poser dans le bureau</h2>
+
+<mat-dialog-content>
+
+  <div>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Recherche" name="recherche" #recherche>
+    </mat-form-field>
+    <button mat-raised-button (click)="rechercher(recherche.value)"><mat-icon>search</mat-icon></button>
+  </div>
+
+  <div *ngIf="dataSourceMateriel.data.length>0">
+    <div class="filtreTableMateriel">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+      </mat-form-field>
+    </div>
+
+    <mat-table class="filtreTableMateriel" #table [dataSource]="dataSourceMateriel" matSort>
+
+      <!-- Colonne Domaine -->
+    <ng-container matColumnDef="domaine">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Domaine </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.domaine}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne Type -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.type}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne marque -->
+    <ng-container matColumnDef="marque">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Marque </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.marque}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne modèle -->
+    <ng-container matColumnDef="modele">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Modèle </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.modele}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne numero de serie -->
+    <ng-container matColumnDef="numero_serie">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> N° de série </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.numero_serie}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne code parc -->
+    <ng-container matColumnDef="code_parc">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code Parc </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.code_parc}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne code article -->
+    <ng-container matColumnDef="code_article">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code Article </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.code_article}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne  date de fin de garantie -->
+    <ng-container matColumnDef="date_fin_garantie">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fin Garantie </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.date_fin_garantie}} </mat-cell>
+    </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id_materiel}" (click)="highlight(row)"></mat-row>
+    </mat-table>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button mat-primary" [disabled]="!selectionMateriel" (click)="poserMaterielDansBureau()">Poser</button>
+  <button class="mat-raised-button" (click)="closeDial()">Fermer</button>
+</mat-dialog-actions>

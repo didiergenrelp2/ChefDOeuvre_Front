@@ -11,5 +11,5 @@ export interface Imateriel {
 	code_article: string;
     date_fin_garantie: any;
     //etat: string;
-    bureau: Ibureau;
+    id_bureau: number;
 }

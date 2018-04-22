@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
@@ -23,35 +24,43 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
+import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
-import { FormsModule } from '@angular/forms';
 import { AccueilComponent } from './accueil/accueil.component';
-import { SidenavService } from './sidenav.service';
-import { ApiService } from './api.service';
-import { AppRoutingModule } from './app-routing.module';
-import { UtilisateurComponent } from './utilisateur/utilisateur.component';
-import { UtilisateurService } from './utilisateur.service';
 import { BureauComponent } from './bureau/bureau.component';
 import { MaterielComponent } from './materiel/materiel.component';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { PoserMaterielDansBureauComponent } from './poser-materiel-dans-bureau/poser-materiel-dans-bureau.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { SidenavService } from './sidenav.service';
+import { ApiService } from './api.service';
+import { BureauService } from './bureau.service';
+import { MaterielService } from './materiel.service';
+import { UtilisateurService } from './utilisateur.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
     BodyComponent,
+    FooterComponent,
     MenuComponent,
     AccueilComponent,
-    UtilisateurComponent,
     BureauComponent,
-    MaterielComponent
+    MaterielComponent,
+    UtilisateurComponent,
+    PoserMaterielDansBureauComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    FlexLayoutModule,
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,
@@ -69,13 +78,17 @@ import { MaterielComponent } from './materiel/materiel.component';
     MatDialogModule,
     MatSlideToggleModule,
     MatTooltipModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule
   ],
   providers: [
     SidenavService,
     ApiService,
-    UtilisateurService
+    UtilisateurService,
+    BureauService,
+    MaterielService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PoserMaterielDansBureauComponent]
 })
 export class AppModule { }

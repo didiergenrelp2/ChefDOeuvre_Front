@@ -1,5 +1,5 @@
 export interface Iutilisateur {
-    id:number;
+    id_utilisateur:number;
     nom:string;
     prenom:string;
     idrh:string;

@@ -10,8 +10,12 @@ export class BureauService {
 
   constructor(private api: ApiService) { }
 
-  getBureau(): Observable<Ibureau[]> {
-    return this.api.getBureau() as Observable<Ibureau[]>;
+  recupererBureaux(): Observable<Ibureau[]> {
+    return this.api.recupererBureaux() as Observable<Ibureau[]>;
   }
 
+  recupererBureau(id): Observable<Ibureau> {
+    return this.api.recupererBureau(id) as Observable<Ibureau>;
+  }
+  
 }

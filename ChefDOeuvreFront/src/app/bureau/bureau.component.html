@@ -44,11 +44,15 @@
       </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"[ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="highlight(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"[ngClass]="{'highlight': selectedRowIndex == row.id_bureau}" (click)="highlight(row)"></mat-row>
   </mat-table>
 </div>
 
-<form #bureauForm="ngForm" (ngSubmit)="onSubmit(bureauForm)">
+
+<button class="mat-raised-button mat-primary" [disabled]="!selectionBureau" (click)="poserMaterielDansBureau()">Poser Matériel</button>
+
+<!--
+<form #bureauForm="ngForm" >
   <mat-form-field class="inputFullWidth">
     <input matInput placeholder="Nom" required name="bureau_nom" [(ngModel)]="bureau.nom_bureau">
   </mat-form-field>
@@ -77,5 +81,7 @@
     </form>
 
     <br>
+    
     <button mat-raised-button (click)="cancelSelect()">Effacer</button>
     <button mat-raised-button (click)="supprimerMaterielDuBureau()">Supprimer</button>
+    -->

@@ -4,6 +4,7 @@
 
 <mat-nav-list>
   <mat-list>
+    <mat-list-item routerLinkActive="active" routerLink="/accueil" (click)="sideNavService.toggleNav()">Accueil</mat-list-item>
     <mat-list-item routerLinkActive="active" routerLink="/bureaux" (click)="sideNavService.toggleNav()">Bureaux</mat-list-item>
     <mat-list-item routerLinkActive="active" routerLink="/materiels" (click)="sideNavService.toggleNav()">Matériel</mat-list-item>
     <mat-list-item routerLinkActive="active" routerLink="/utilisateurs" (click)="sideNavService.toggleNav()">Utilisateurs</mat-list-item>

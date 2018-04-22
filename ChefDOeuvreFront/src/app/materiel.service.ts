@@ -16,6 +16,9 @@ export class MaterielService {
   recupererToutMateriel(): Observable<Imateriel[]> {
     return this.api.recupererToutMateriel() as Observable<Imateriel[]>;
   }
+  recupererMateriel(id): Observable<Imateriel> {
+    return this.api.recupererMateriel(id) as Observable<Imateriel>;
+  }
 
   ajouterMateriel(materiel: Imateriel): Observable<Imateriel> {
     return this.api.ajouterMateriel(materiel).pipe(tap(data => this.update$.next()));
@@ -30,4 +33,13 @@ export class MaterielService {
   supprimerMateriel(id) {
     return this.api.supprimerMateriel(id).pipe(tap(data => this.update$.next()));
   }
+
+  poserMaterielDansBureau(materiel: Imateriel): Observable<Imateriel>{
+    return this.api.poserMaterielDansBureau(materiel.id_materiel, materiel);
+  }
+
+  rechercherMateriel(recherche): Observable<Imateriel[]>{
+    return this.api.rechercherMateriel(recherche) as Observable<Imateriel[]>;
+  }
+
 }

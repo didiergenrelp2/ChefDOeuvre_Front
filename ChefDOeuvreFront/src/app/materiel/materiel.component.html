@@ -1,111 +1,107 @@
 <div>
-    <div class="filtreTableauMateriel">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
-      </mat-form-field>
-    </div>
-  
-    <mat-table class="filtreTableauMateriel" #table [dataSource]="dataSourceMateriel" matSort>
-      <!-- Colonne Domaine -->
-      <ng-container matColumnDef="domaine">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Domaine </mat-header-cell>
-          <mat-cell *matCellDef="let materiel"> {{materiel.domaine}} </mat-cell>
-        </ng-container>
-      
-      <!-- Colonne Type -->
-      <ng-container matColumnDef="type">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
-        <mat-cell *matCellDef="let materiel"> {{materiel.type}} </mat-cell>
-      </ng-container>
-  
-      <!-- Colonne marque -->
-      <ng-container matColumnDef="marque">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Marque </mat-header-cell>
-        <mat-cell *matCellDef="let materiel"> {{materiel.marque}} </mat-cell>
-      </ng-container>
-  
-      <!-- Colonne modele -->
-      <ng-container matColumnDef="modele">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Modele </mat-header-cell>
-        <mat-cell *matCellDef="let materiel"> {{materiel.modele}} </mat-cell>
-      </ng-container>
-  
-      <!-- Colonne numero de serie -->
-      <ng-container matColumnDef="numero_serie">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> N° de série </mat-header-cell>
-        <mat-cell *matCellDef="let materiel"> {{materiel.numero_serie}} </mat-cell>
-      </ng-container>
-
-      <!-- Colonne code parc -->
-      <ng-container matColumnDef="code_parc">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Code Parc </mat-header-cell>
-          <mat-cell *matCellDef="let materiel"> {{materiel.code_parc}} </mat-cell>
-        </ng-container>
-
-        <!-- Colonne code article -->
-      <ng-container matColumnDef="code_article">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Code Article </mat-header-cell>
-          <mat-cell *matCellDef="let materiel"> {{materiel.code_article}} </mat-cell>
-        </ng-container>
-             
-        <!-- Colonne  date de fin de garantie -->
-      <ng-container matColumnDef=" date_fin_garantie">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Fin Garantie </mat-header-cell>
-          <mat-cell *matCellDef="let materiel"> {{materiel. date_fin_garantie}} </mat-cell>
-        </ng-container>
-
-  
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"[ngClass]="{'highlight': selectedRowIndex == row.id}" (click)="highlight(row)"></mat-row>
-    </mat-table>
+  <div class="filtreTableMateriel">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+    </mat-form-field>
   </div>
-  
-  <form #materielForm="ngForm" (ngSubmit)="onSubmit(materielForm)">
-    <mat-form-field class="inputFullWidth">
-        <input matInput placeholder="Domaine" required name="materiel_domaine" [(ngModel)]="materiel.domaine">
-      </mat-form-field>
 
-    <mat-form-field class="inputFullWidth">
-      <input matInput placeholder="Type" required name="materiel_type" [(ngModel)]="materiel.type">
-    </mat-form-field>
-  
-    <mat-form-field class="inputFullWidth">
-      <input matInput placeholder="Marque" required name="materiel_marque" [(ngModel)]="materiel.marque">
-    </mat-form-field>
-      
-    <mat-form-field class="inputFullWidth">
-      <input matInput placeholder="Modele" required name="materiel_modele" [(ngModel)]="materiel.modele">
-    </mat-form-field>
+  <mat-table class="filtreTableMateriel" #table [dataSource]="dataSourceMateriel" matSort>
+    <!-- Colonne Domaine -->
+    <ng-container matColumnDef="domaine">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Domaine </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.domaine}} </mat-cell>
+    </ng-container>
 
-<mat-form-field class="inputFullWidth">
-      <input matInput placeholder="Numéro Série" required name="materiel_numero_serie" [(ngModel)]="materiel.numero_serie">
-    </mat-form-field>
+    <!-- Colonne Type -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.type}} </mat-cell>
+    </ng-container>
 
-    <mat-form-field class="inputFullWidth">
-        <input matInput placeholder="Code Parc" required name="materiel_code_parc" [(ngModel)]="materiel.code_parc">
-      </mat-form-field>
+    <!-- Colonne marque -->
+    <ng-container matColumnDef="marque">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Marque </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.marque}} </mat-cell>
+    </ng-container>
 
-      <mat-form-field class="inputFullWidth">
-          <input matInput placeholder="Code Article" required name="materiel_code_article" [(ngModel)]="materiel.code_article">
-        </mat-form-field>
+    <!-- Colonne modèle -->
+    <ng-container matColumnDef="modele">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Modèle </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.modele}} </mat-cell>
+    </ng-container>
 
-        <mat-form-field class="inputFullWidth">
-            <input matInput placeholder="Fin Garantie" required name="materiel_date_fin_garantie" [(ngModel)]="materiel.date_fin_garantie">
-          </mat-form-field>
+    <!-- Colonne numero de serie -->
+    <ng-container matColumnDef="numero_serie">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> N° de série </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.numero_serie}} </mat-cell>
+    </ng-container>
 
+    <!-- Colonne code parc -->
+    <ng-container matColumnDef="code_parc">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code Parc </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.code_parc}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne code article -->
+    <ng-container matColumnDef="code_article">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Code Article </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.code_article}} </mat-cell>
+    </ng-container>
+
+    <!-- Colonne  date de fin de garantie -->
+    <ng-container matColumnDef="date_fin_garantie">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Fin Garantie </mat-header-cell>
+      <mat-cell *matCellDef="let materiel"> {{materiel.date_fin_garantie}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id_materiel}" (click)="highlight(row)"></mat-row>
+  </mat-table>
+</div>
+
+<br>
+<form #materielForm="ngForm" (ngSubmit)="onSubmit(materielForm)">
+  <mat-form-field class="inputFullWidth">
+    <mat-select placeholder="Domaine" required name="materiel_domaine" [(ngModel)]="materiel.domaine">
+      <mat-option *ngFor="let domaine of domaines" [value]="domaine.value">
+        {{ domaine.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Type" required name="materiel_type" [(ngModel)]="materiel.type">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Marque" required name="materiel_marque" [(ngModel)]="materiel.marque">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Modèle" required name="materiel_modele" [(ngModel)]="materiel.modele">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="N° de Série" required name="materiel_numero_serie" [(ngModel)]="materiel.numero_serie">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Code Parc" required name="materiel_code_parc" [(ngModel)]="materiel.code_parc">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Code Article" required name="materiel_code_article" [(ngModel)]="materiel.code_article">
+  </mat-form-field>
+
+  <mat-form-field class="inputFullWidth">
+    <input matInput placeholder="Fin Garantie" required name="materiel_date_fin_garantie" [(ngModel)]="materiel.date_fin_garantie">
+  </mat-form-field>
   
-    <mat-form-field class="inputFullWidth">
-      <mat-select placeholder="Domaine" required name="materiel_domaine" [(ngModel)]="materiel.domaine">
-        <mat-option *ngFor="let domaine of domaines" [value]="domaine.value">
-          {{ domaine.viewValue }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-      <button class="mat-raised-button mat-primary" type="submit" [disabled]="!materielForm.valid">{{edition ? 'Modifier' : 'Créer'}}</button>
-      </form>
-  
-      <br>
-      <button mat-raised-button (click)="cancelSelect()">Effacer</button>
-      <button mat-raised-button (click)="supprimerMateriel()">Supprimer</button>
-  
+  <br>
+  <button class="mat-raised-button mat-primary" type="submit" [disabled]="!materielForm.valid">{{edition ? 'Modifier' : 'Créer'}}</button>
+</form>
+
+<br>
+<button mat-raised-button (click)="cancelSelect()">Effacer</button>
+<button mat-raised-button (click)="supprimerMateriel()">Supprimer</button>
+<br>
