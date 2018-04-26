@@ -48,13 +48,13 @@ export class PoserMaterielDansBureauComponent implements OnInit {
   ];
   dataSourceMateriel = new MatTableDataSource();
 
-  @ViewChild(MatSort) sort: MatSort;
-
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue = filterValue.trim(); // Supprime les espaces
+    filterValue = filterValue.toLowerCase(); // Met le MatTableDataSource en lowercase
     this.dataSourceMateriel.filter = filterValue;
   }
+  
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
     this.bureauService.recupererBureau(this.data).subscribe(bureau=>this.bureau = bureau);
@@ -73,10 +73,9 @@ export class PoserMaterielDansBureauComponent implements OnInit {
   //TODO Vérifier formule et corriger erreur 403 lors de la pose
   poserMaterielDansBureau(){
     this.selectionMateriel = false;
-    this.selectedRowIndex=-1;
-    let id_bureau = this.bureau.id_bureau;
-    
-    this.materielService.poserMaterielDansBureau(this.materiel).subscribe(
+    this.selectedRowIndex=-1; 
+    // this.data = id_bureau du bureau sélectionné avant ouverture fenetre selection materiel
+    this.materielService.poserMaterielDansBureau(this.materiel.id_materiel, this.data).subscribe(
       result=> {this.afficherMessage("Enregistrement effectué", "")},
       error => {this.afficherMessage("", "Matériel déjà présent dans le bureau")}
     )
@@ -88,8 +87,7 @@ export class PoserMaterielDansBureauComponent implements OnInit {
     });
   }
 
-  //TODO corriger erreur 500 lors de la recherche avec caractere
-  rechercher(recherche) {
+  rechercher(recherche: string) {
     this.materielService.rechercherMateriel(recherche).subscribe((data: Imateriel[]) => {
       this.dataSourceMateriel = new MatTableDataSource(data);
       this.dataSourceMateriel.sort = this.sort;

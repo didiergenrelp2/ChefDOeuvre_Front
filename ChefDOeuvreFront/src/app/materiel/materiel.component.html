@@ -54,6 +54,7 @@
       <mat-cell *matCellDef="let materiel"> {{materiel.date_fin_garantie}} </mat-cell>
     </ng-container>
 
+    <!-- Surlignage ligne -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id_materiel}" (click)="highlight(row)"></mat-row>
   </mat-table>
@@ -64,7 +65,7 @@
   <mat-form-field class="inputFullWidth">
     <mat-select placeholder="Domaine" required name="materiel_domaine" [(ngModel)]="materiel.domaine">
       <mat-option *ngFor="let domaine of domaines" [value]="domaine.value">
-        {{ domaine.viewValue }}
+        {{domaine.viewValue}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -86,15 +87,19 @@
   </mat-form-field>
 
   <mat-form-field class="inputFullWidth">
-    <input matInput placeholder="Code Parc" required name="materiel_code_parc" [(ngModel)]="materiel.code_parc">
+    <input matInput placeholder="Code Parc" required name="materiel_code_parc" [(ngModel)]="materiel.code_parc" [formControl]="formatParc">
+    <mat-error *ngIf="formatParc.invalid">Code parc non conforme</mat-error>
   </mat-form-field>
 
   <mat-form-field class="inputFullWidth">
-    <input matInput placeholder="Code Article" required name="materiel_code_article" [(ngModel)]="materiel.code_article">
+    <input matInput placeholder="Code Article" required name="materiel_code_article" [(ngModel)]="materiel.code_article" [formControl]="formatArticle">
+    <mat-error *ngIf="formatArticle.invalid">Code article non conforme</mat-error>
   </mat-form-field>
 
   <mat-form-field class="inputFullWidth">
-    <input matInput placeholder="Fin Garantie" required name="materiel_date_fin_garantie" [(ngModel)]="materiel.date_fin_garantie">
+    <input matInput placeholder="Fin Garantie" required name="materiel_date_fin_garantie" [(ngModel)]="materiel.date_fin_garantie" [formControl]="formatDate">
+    <mat-hint>Format date : aaaa-mm-jj</mat-hint>
+    <mat-error *ngIf="formatDate.invalid">Date non conforme</mat-error>
   </mat-form-field>
   
   <br>

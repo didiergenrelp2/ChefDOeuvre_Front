@@ -12,6 +12,7 @@ import { MaterielService } from '../materiel.service';
 import { Imateriel } from '../imateriel';
 import { PoserMaterielDansBureauComponent } from '../poser-materiel-dans-bureau/poser-materiel-dans-bureau.component';
 import { Subscription } from 'rxjs/Subscription';
+import { MaterielComponent } from '../materiel/materiel.component';
 
 @Component({
   selector: 'app-bureau',
@@ -23,6 +24,7 @@ export class BureauComponent implements OnInit {
   materiel: Imateriel[];
   selectedRowIndex = -1;
   selectionBureau = false;
+  materielService: MaterielService;
 
   constructor(
     private bureauService: BureauService,
@@ -38,6 +40,7 @@ export class BureauComponent implements OnInit {
     'telephone'
   ];
   dataSourceBureau = new MatTableDataSource();
+  dataSourceMateriel = new MatTableDataSource();
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -106,6 +109,13 @@ export class BureauComponent implements OnInit {
 
   poserMaterielDansBureau() {
     this.dialog.open(PoserMaterielDansBureauComponent, {
+      width: '800px',
+      data: this.bureau.id_bureau
+    });
+  }
+
+  listerMaterielDuBureau(){ 
+    this.dialog.open(ListerMaterielDuBureauComponent, {
       width: '800px',
       data: this.bureau.id_bureau
     });

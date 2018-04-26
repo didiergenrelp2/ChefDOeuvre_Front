@@ -34,7 +34,7 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { PoserMaterielDansBureauComponent } from './poser-materiel-dans-bureau/poser-materiel-dans-bureau.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { SidenavService } from './sidenav.service';
@@ -79,7 +79,8 @@ import { UtilisateurService } from './utilisateur.service';
     MatSlideToggleModule,
     MatTooltipModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     SidenavService,

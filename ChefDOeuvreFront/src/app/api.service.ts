@@ -32,8 +32,8 @@ export class ApiService {
     return this.http.get<Ibureau>(`${this.URL}/bureau/${id}`);
   }
 
-  poserMaterielDansBureau(materiel, id_bureau){
-    return this.http.post<Imateriel>(`${this.URL}/bureau/poserMateriel`, id_bureau);
+  poserMaterielDansBureau(id_materiel, id_bureau){
+    return this.http.put<Imateriel>(`${this.URL}/bureau/${id_bureau}/poserMateriel`, id_materiel);
   }
   retirerMaterielDuBureau(){
     //TODO

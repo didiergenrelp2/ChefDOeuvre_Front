@@ -1,12 +1,12 @@
 <div class="mat-display-1" fxLayoutAlign="center">
-  <h2>Gestock</h2>
+  <h3>Gestock</h3>
 </div>
 
 <mat-nav-list>
   <mat-list>
-    <mat-list-item routerLinkActive="active" routerLink="/accueil" (click)="sideNavService.toggleNav()">Accueil</mat-list-item>
-    <mat-list-item routerLinkActive="active" routerLink="/bureaux" (click)="sideNavService.toggleNav()">Bureaux</mat-list-item>
-    <mat-list-item routerLinkActive="active" routerLink="/materiels" (click)="sideNavService.toggleNav()">Matériel</mat-list-item>
-    <mat-list-item routerLinkActive="active" routerLink="/utilisateurs" (click)="sideNavService.toggleNav()">Utilisateurs</mat-list-item>
+    <mat-list-item routerLinkActive="active" routerLink="/accueil" (click)="sideNavService.toggleNav()"><mat-icon aria-hidden="true">home</mat-icon>Accueil</mat-list-item>
+    <mat-list-item routerLinkActive="active" routerLink="/bureaux" (click)="sideNavService.toggleNav()"><mat-icon aria-hidden="true">store</mat-icon>Bureaux</mat-list-item>
+    <mat-list-item routerLinkActive="active" routerLink="/materiels" (click)="sideNavService.toggleNav()"><mat-icon aria-hidden="true">laptop</mat-icon>Matériel</mat-list-item>
+    <mat-list-item routerLinkActive="active" routerLink="/utilisateurs" (click)="sideNavService.toggleNav()"><mat-icon aria-hidden="true">person_outline</mat-icon>Utilisateurs</mat-list-item>
   </mat-list>
 </mat-nav-list>

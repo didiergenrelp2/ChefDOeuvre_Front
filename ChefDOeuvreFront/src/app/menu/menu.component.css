@@ -1,5 +1,7 @@
-h2{
-    margin: 10%;
+h3{
+    color: #141B41;
+    margin: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 a{
@@ -9,4 +11,7 @@ a{
 
 @media (max-width: 500px){
     
+}
+mat-icon{
+    margin-right: 10px;
 }

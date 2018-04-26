@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
 import { Imateriel } from '../imateriel';
 import { MaterielService } from '../materiel.service';
+import { FormControl, Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-materiel',
@@ -13,24 +14,39 @@ export class MaterielComponent implements OnInit {
   materiel: Imateriel;
   selectedRowIndex: number = -1;
   edition: boolean = false;
+  formatDate = new FormControl('', [Validators.pattern("^[1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]$")]);
+  formatArticle = new FormControl('', [Validators.pattern("^[0-9]{6}$")]);
+  formatParc = new FormControl('',[Validators.pattern("^[A-Z][0-9]{5}")]);
 
-  constructor(private materielService: MaterielService) { }
+  constructor(
+    private materielService: MaterielService,
+    private snackBar:MatSnackBar
+  ) { }
 
-  displayedColumns = ['domaine', 'type', 'marque', 'modele', 'numero_serie', 'code_parc', 'code_article', 'date_fin_garantie'];
+  displayedColumns = [
+    'domaine', 
+    'type', 
+    'marque', 
+    'modele', 
+    'numero_serie', 
+    'code_parc', 
+    'code_article', 
+    'date_fin_garantie'
+  ];
   dataSourceMateriel = new MatTableDataSource();
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    filterValue = filterValue.trim(); // Supprime les espaces
+    filterValue = filterValue.toLowerCase(); // Met le MatTableDataSource en lowercase
     this.dataSourceMateriel.filter = filterValue;
   }
-  //TODO mettre les valeurs avec des nombres ?
+  
   domaines = [
-    { value: '0', viewValue: 'Informatique' },
-    { value: '1', viewValue: 'Réseau' },
-    { value: '2', viewValue: 'Téléphonie' },
-    { value: '3', viewValue: 'Automates' },
-    { value: '4', viewValue: 'Sureté' }
+    { value: 'Informatique', viewValue: 'Informatique' },
+    { value: 'Réseau', viewValue: 'Réseau' },
+    { value: 'Téléphonie', viewValue: 'Téléphonie' },
+    { value: 'Automates', viewValue: 'Automates' },
+    { value: 'Sureté', viewValue: 'Sureté' }
   ];
 
   @ViewChild(MatSort) sort: MatSort;
@@ -58,11 +74,21 @@ export class MaterielComponent implements OnInit {
 
   onSubmit() {
     if (this.edition) {
-      this.materielService.mettreAJourMateriel(this.materiel).subscribe();
+      this.materielService.mettreAJourMateriel(this.materiel).subscribe(
+        result=> {this.afficherMessage('Enregistrement effectué', '')},
+        error => {this.afficherMessage('', 'Code parc déjà existant'); });
     } else {
-      this.materielService.ajouterMateriel(this.materiel).subscribe();
+      this.materielService.ajouterMateriel(this.materiel).subscribe(
+        result=> {this.afficherMessage('Enregistrement effectué', '')},
+        error => {this.afficherMessage('', 'Code parc déjà existant'); });
     }
   }
+
+  afficherMessage(message:string, erreur: string){
+    this.snackBar.open(message,erreur, {
+      duration: 2000,
+    });
+   }
 
   cancelSelect() {
     this.selectedRowIndex = -1;

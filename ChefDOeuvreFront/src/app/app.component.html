@@ -5,14 +5,14 @@
   </mat-sidenav>
   <mat-sidenav-content>
       <div [style.minHeight.%]="100" fxLayout="column" layout-fill flex>
-              <mat-toolbar color="primary" fxLayoutAlign="space-between center">
+              <mat-toolbar fxLayoutAlign="space-between center">
                           <button mat-button (click)="sideNavService.toggleNav()"><mat-icon>menu</mat-icon></button>
                           <button mat-button class="aCliquable" routerLink="/accueil">{{title}}</button>
                           <div>
                               <button mat-button (click)="sideNavService.toggleNav()"><mat-icon>exit_to_app</mat-icon></button>
                           </div>           
               </mat-toolbar>
-          <app-body [style.padding.em]="2" fxFlex="1"></app-body> <!--mettre un ngIf lorsqu'il y aura le module de connection en Oath2-->
+          <app-body [style.padding.em]="2" fxFlex="1"></app-body>
           <app-footer></app-footer> 
       </div>
   </mat-sidenav-content>

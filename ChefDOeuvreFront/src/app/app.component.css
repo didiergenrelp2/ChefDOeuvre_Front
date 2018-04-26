@@ -1,3 +1,7 @@
 .aCliquable{
     cursor: pointer;
 }
+mat-toolbar{
+    background-color: #141B41;
+    color: white;
+}

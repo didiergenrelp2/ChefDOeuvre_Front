@@ -6,7 +6,6 @@
   </div>
 
   <mat-table class="filtreTableauBureau" #table [dataSource]="dataSourceBureau" matSort>
-
     <!-- Colonne Nom -->
     <ng-container matColumnDef="nom">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
@@ -48,8 +47,11 @@
   </mat-table>
 </div>
 
-
+<br>
 <button class="mat-raised-button mat-primary" [disabled]="!selectionBureau" (click)="poserMaterielDansBureau()">Poser Matériel</button>
+<button class="mat-raised-button mat-primary" [disabled]="!selectionBureau" (click)="listerMaterielDuBureau()">Liste du Matériel</button>
+
+
 
 <!--
 <form #bureauForm="ngForm" >
