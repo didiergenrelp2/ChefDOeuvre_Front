@@ -11,6 +11,7 @@ import { BureauService } from '../bureau.service';
 import { MaterielService } from '../materiel.service';
 import { Imateriel } from '../imateriel';
 import { PoserMaterielDansBureauComponent } from '../poser-materiel-dans-bureau/poser-materiel-dans-bureau.component';
+import { ListerMaterielDuBureauComponent } from '../lister-materiel-du-bureau/lister-materiel-du-bureau.component';
 import { Subscription } from 'rxjs/Subscription';
 import { MaterielComponent } from '../materiel/materiel.component';
 

@@ -14,13 +14,12 @@ import { Ibureau } from '../ibureau';
 import { BureauService } from '../bureau.service';
 import { Subscription } from 'rxjs/Subscription';
 
-
 @Component({
-  selector: 'app-poser-materiel-dans-bureau',
-  templateUrl: './poser-materiel-dans-bureau.component.html',
-  styleUrls: ['./poser-materiel-dans-bureau.component.css']
+  selector: 'app-lister-materiel-du-bureau',
+  templateUrl: './lister-materiel-du-bureau.component.html',
+  styleUrls: ['./lister-materiel-du-bureau.component.css']
 })
-export class PoserMaterielDansBureauComponent implements OnInit {
+export class ListerMaterielDuBureauComponent implements OnInit {
 
   materiel: Imateriel;
   materiels: Imateriel[];
@@ -32,10 +31,10 @@ export class PoserMaterielDansBureauComponent implements OnInit {
     private snackBar: MatSnackBar,
     private bureauService: BureauService,
     private materielService: MaterielService,
-    public dialogRef: MatDialogRef<PoserMaterielDansBureauComponent>,
+    public dialogRef: MatDialogRef<ListerMaterielDuBureauComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
-
+  
   displayedColumns = [
     'domaine',
     'type',
@@ -57,7 +56,27 @@ export class PoserMaterielDansBureauComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
+    this.bureau = {
+      id_bureau: null,
+      nom_bureau: '',
+      code_regate: '',
+      adresse: '',
+      code_postal: '',
+      ville: '',
+      telephone: '',
+      materiel: []
+    };
+    this.materiels=[];
     this.bureauService.recupererBureau(this.data).subscribe(bureau=>this.bureau = bureau);
+    this.rafraichirListe();
+  }
+
+  rafraichirListe() {
+    this.materielService.listerMaterielDuBureau(this.data).subscribe(materiels=> {
+      this.materiels=materiels;
+      this.dataSourceMateriel = new MatTableDataSource(this.materiels);
+      this.dataSourceMateriel.sort = this.sort;
+    })
   }
 
   highlight(row) {
@@ -70,25 +89,32 @@ export class PoserMaterielDansBureauComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  poserMaterielDansBureau(){
-    this.selectionMateriel = false;
-    this.selectedRowIndex=-1; 
-    this.materielService.poserMaterielDansBureau(this.materiel.id_materiel, this.data).subscribe(
-      result=> {this.afficherMessage("Enregistrement effectué", "")},
-      error => {this.afficherMessage("", "Matériel déjà présent dans le bureau")}
-    )
-  }
-  
-  afficherMessage(message:string, erreur: string){
-    this.snackBar.open(message,erreur, {
-      duration: 2000,
-    });
-  }
+retirerMaterielDuBureau(id_materiel){
+  this.selectionMateriel = false;
+  this.selectedRowIndex=-1; 
+  /*let id_bureau:Imateriel={
+    id_materiel: this.materiel.id_materiel,
+    id_bureau:this.materiel.id_bureau
+  }*/
+  this.materielService.retirerMaterielDuBureau(this.materiel.id_materiel, this.materiel.id_bureau).subscribe(
+    result=> {
+      this.rafraichirListe();
+      this.afficherMessage("Suppression effectuée", "")
+    },
+    error => {this.afficherMessage("", "Matériel non présent dans le bureau")}
+  );
+}
 
-  rechercher(recherche: string) {
-    this.materielService.rechercherMateriel(recherche).subscribe((data: Imateriel[]) => {
-      this.dataSourceMateriel = new MatTableDataSource(data);
-      this.dataSourceMateriel.sort = this.sort;
-    });
-  } 
+afficherMessage(message:string, erreur: string){
+  this.snackBar.open(message,erreur, {
+    duration: 2000,
+  });
+}
+nonNull(){
+  if (this.materiels.length>0){
+    return true
+  }
+  else{return false}
+}
+
 }

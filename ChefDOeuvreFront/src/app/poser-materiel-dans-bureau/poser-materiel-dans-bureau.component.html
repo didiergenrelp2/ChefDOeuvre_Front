@@ -65,6 +65,7 @@
       <mat-cell *matCellDef="let materiel"> {{materiel.date_fin_garantie}} </mat-cell>
     </ng-container>
 
+    <!-- Surlignage ligne -->
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight': selectedRowIndex == row.id_materiel}" (click)="highlight(row)"></mat-row>
     </mat-table>

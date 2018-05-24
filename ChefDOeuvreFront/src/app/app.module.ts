@@ -42,6 +42,7 @@ import { ApiService } from './api.service';
 import { BureauService } from './bureau.service';
 import { MaterielService } from './materiel.service';
 import { UtilisateurService } from './utilisateur.service';
+import { ListerMaterielDuBureauComponent } from './lister-materiel-du-bureau/lister-materiel-du-bureau.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { UtilisateurService } from './utilisateur.service';
     BureauComponent,
     MaterielComponent,
     UtilisateurComponent,
-    PoserMaterielDansBureauComponent
+    PoserMaterielDansBureauComponent,
+    ListerMaterielDuBureauComponent
   ],
   imports: [
     AppRoutingModule,
@@ -90,6 +92,6 @@ import { UtilisateurService } from './utilisateur.service';
     MaterielService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [PoserMaterielDansBureauComponent]
+  entryComponents: [PoserMaterielDansBureauComponent, ListerMaterielDuBureauComponent]
 })
 export class AppModule { }

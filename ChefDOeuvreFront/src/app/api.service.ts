@@ -35,10 +35,13 @@ export class ApiService {
   poserMaterielDansBureau(id_materiel, id_bureau){
     return this.http.put<Imateriel>(`${this.URL}/bureau/${id_bureau}/poserMateriel`, id_materiel);
   }
-  retirerMaterielDuBureau(){
-    //TODO
+  retirerMaterielDuBureau(id_materiel, id_bureau){
+    return this.http.put<Imateriel>(`${this.URL}/bureau/${id_bureau}/retirerMateriel`, id_materiel);
   }
-
+  
+  listerMaterielDuBureau(id_bureau){
+    return this.http.get<Imateriel[]>(`${this.URL}/bureau/${id_bureau}/listeMateriel`);
+  }
   recupererToutMateriel() {
     return this.http.get<Imateriel[]>(`${this.URL}/materiels`);
   }

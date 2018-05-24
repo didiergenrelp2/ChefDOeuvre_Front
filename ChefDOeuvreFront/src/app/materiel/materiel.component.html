@@ -60,6 +60,7 @@
   </mat-table>
 </div>
 
+<!--Champs écriture-->
 <br>
 <form #materielForm="ngForm" (ngSubmit)="onSubmit(materielForm)">
   <mat-form-field class="inputFullWidth">
@@ -104,9 +105,7 @@
   
   <br>
   <button class="mat-raised-button mat-primary" type="submit" [disabled]="!materielForm.valid">{{edition ? 'Modifier' : 'Créer'}}</button>
+  
+  <button mat-raised-button (click)="cancelSelect()">Effacer</button>
+  <button mat-raised-button (click)="supprimerMateriel()">Supprimer</button>
 </form>
-
-<br>
-<button mat-raised-button (click)="cancelSelect()">Effacer</button>
-<button mat-raised-button (click)="supprimerMateriel()">Supprimer</button>
-<br>
