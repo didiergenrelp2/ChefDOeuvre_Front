@@ -4,4 +4,7 @@ p {
 mat-toolbar {
     background-color: #141B41;
     color: white;
+    height: 3%;
+    position: fixed;
+    bottom: 0;   
 }

@@ -39,8 +39,8 @@ export class MaterielService {
     return this.api.poserMaterielDansBureau(id_materiel, id_bureau);
   }
 
-  retirerMaterielDuBureau(id_materiel: number,id_bureau: number): Observable<Imateriel>{
-    return this.api.retirerMaterielDuBureau(id_materiel, id_bureau);
+  retirerMaterielDuBureau(id_bureau: number,id_materiel: number): Observable<Imateriel>{
+    return this.api.retirerMaterielDuBureau(id_bureau, id_materiel);
   }
 
   rechercherMateriel(recherche): Observable<Imateriel[]>{

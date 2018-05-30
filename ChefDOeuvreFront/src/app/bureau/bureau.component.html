@@ -1,10 +1,10 @@
+<h2>Bureaux</h2>
+
 <div>
-  <div class="filtreTableauBureau">
-    <mat-form-field>
+    <mat-form-field class="filtre">
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
     </mat-form-field>
-  </div>
-
+  
   <mat-table class="filtreTableauBureau" #table [dataSource]="dataSourceBureau" matSort>
     <!-- Colonne Nom -->
     <ng-container matColumnDef="nom">
@@ -48,9 +48,10 @@
 </div>
 
 <br>
+<div class="basDePage">
 <button class="mat-raised-button mat-primary" [disabled]="!selectionBureau" (click)="poserMaterielDansBureau()">Poser Matériel</button>
 <button class="mat-raised-button mat-primary" [disabled]="!selectionBureau" (click)="listerMaterielDuBureau()">Liste du Matériel</button>
-
+</div>
 
 
 <!--

@@ -32,4 +32,15 @@
 
 .highlight{
     background:  #6F9CEB;
-  }
+}
+
+h2 {
+    position: relative;
+    top: 13px;
+}
+
+.basDePage {
+   position: fixed;
+   bottom: 5%;
+   overflow: hidden;
+}

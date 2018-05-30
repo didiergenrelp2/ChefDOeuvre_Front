@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
 import { Iutilisateur } from '../iutilisateur';
 import { UtilisateurService } from '../utilisateur.service';
 
@@ -14,7 +14,7 @@ export class UtilisateurComponent implements OnInit {
   selectedRowIndex: number= -1;
   edition:boolean=false;
 
-  constructor(private utilisateurService:UtilisateurService) { }
+  constructor(private utilisateurService:UtilisateurService,private snackBar:MatSnackBar) { }
 
   displayedColumns = ['nom', 'prenom', 'idrh', 'fonction'];
   dataSourceUtilisateur = new MatTableDataSource();
@@ -24,7 +24,7 @@ export class UtilisateurComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSourceUtilisateur.filter = filterValue;
   }
-//TODO afficher les viewvalues dans le tableau
+
   fonctions = [
     {value: '0', viewValue: 'Administrateur'},
     {value: '1', viewValue: 'Chef de Projet'},
@@ -80,9 +80,21 @@ export class UtilisateurComponent implements OnInit {
     }
   }
 
+  afficherMessage(message:string, erreur: string){
+    this.snackBar.open(message,erreur, {
+      duration: 2000,
+    });
+   }
+
   supprimerUtilisateur(){
+    if( confirm("Supprimer définitivement l'utilisateur' ?")) {
     this.edition=false;
-    this.utilisateurService.supprimerUtilisateur(this.utilisateur.id_utilisateur).subscribe();
+    this.utilisateurService.supprimerUtilisateur(this.utilisateur.id_utilisateur).subscribe(
+      result=> {this.afficherMessage('Suppression effectuée', '')},
+    );
     this.clearInput();
   }
+  else {
+    this.afficherMessage('', 'Suppression annulée');
+   }}
 }

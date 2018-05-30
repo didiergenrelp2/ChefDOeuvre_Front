@@ -2,7 +2,52 @@
     background: #6F9CEB;
   }
 
-  .mat-form-field {
+.mat-form-field {
     font-size: 14px;
     width: 12%;
+}
+h2 {
+    position: fixed;
+    top: 45px;
+    /*
+   relative : top: 15px;
+    right: 0;
+    left: 0;*/
+}
+.basDePage {
+    display: none;
+    position: fixed;
+    bottom: 5%;
+   /* bottom: 45px;*/
+    overflow: hidden;
+}    
+.filtre{
+    position: fixed;
+    top: 100px;
+    /*top: 110px;
+    width: 180px;
+    overflow: visible;  */
+    width: 95%;
+}
+.filtreTableMateriel{
+    position: fixed;
+    top: 100px;
+    bottom: 30px;
+    width: 90%;
+    overflow: auto;
+    background: rgb(231, 231, 231);
+}
+@media screen and (min-width: 768px) {
+    .basDePage {display: inline}
+    .filtreTableMateriel{
+        position: fixed;
+        /* top: 15%;
+        bottom: 16%;*/
+        top: 140px;
+        bottom: 150px;
+        width: 95%;
+        overflow: auto;
+        background: rgb(231, 231, 231);
+    }
+    
 }

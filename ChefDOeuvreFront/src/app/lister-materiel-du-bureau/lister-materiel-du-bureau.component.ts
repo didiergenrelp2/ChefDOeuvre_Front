@@ -89,14 +89,10 @@ export class ListerMaterielDuBureauComponent implements OnInit {
     this.dialogRef.close();
   }
 
-retirerMaterielDuBureau(id_materiel){
+retirerMaterielDuBureau(){
   this.selectionMateriel = false;
   this.selectedRowIndex=-1; 
-  /*let id_bureau:Imateriel={
-    id_materiel: this.materiel.id_materiel,
-    id_bureau:this.materiel.id_bureau
-  }*/
-  this.materielService.retirerMaterielDuBureau(this.materiel.id_materiel, this.materiel.id_bureau).subscribe(
+  this.materielService.retirerMaterielDuBureau(this.data, this.materiel.id_materiel).subscribe(
     result=> {
       this.rafraichirListe();
       this.afficherMessage("Suppression effectuée", "")

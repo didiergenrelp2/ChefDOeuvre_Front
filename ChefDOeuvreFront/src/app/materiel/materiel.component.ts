@@ -9,6 +9,7 @@ import { FormControl, Validators, NgForm } from '@angular/forms';
   templateUrl: './materiel.component.html',
   styleUrls: ['./materiel.component.css']
 })
+
 export class MaterielComponent implements OnInit {
   materiels: Imateriel[];
   materiel: Imateriel;
@@ -111,10 +112,26 @@ export class MaterielComponent implements OnInit {
 
     }
   }
+  
+  rechercher(recherche: string) {
+    this.materielService.rechercherMateriel(recherche).subscribe((data: Imateriel[]) => {
+      this.dataSourceMateriel = new MatTableDataSource(data);
+      this.dataSourceMateriel.sort = this.sort;
+    });
+  } 
 
   supprimerMateriel() {
-    this.edition = false;
-    this.materielService.supprimerMateriel(this.materiel.id_materiel).subscribe();
+   if( confirm("Supprimer définitivement le matériel ?")) {
+     this.edition = false;
+    this.materielService.supprimerMateriel(this.materiel.id_materiel).subscribe(
+      result=> {this.afficherMessage('Suppression effectuée', '')}
+     // cancel => {this.afficherMessage('', 'Suppression annulée'); }
+    );
     this.clearInput();
+   }
+   else {
+    this.afficherMessage('', 'Suppression annulée');
+   }
+   
   }
 }
