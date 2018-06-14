@@ -1,5 +1,4 @@
-<h2>
-  Utilisateurs</h2>
+<h2>Utilisateurs</h2>
 
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
   <div fxFlex="50%">
@@ -42,7 +41,7 @@
 
     <div class="basDePage">
       <button mat-raised-button (click)="cancelSelect()">Effacer</button>
-      <button mat-raised-button (click)="supprimerUtilisateur()">Supprimer</button>
+      <button mat-raised-button (click)="supprimerUtilisateur()" [disabled]="!utilisateurForm.valid">Supprimer</button>
     </div>
   </div>
 

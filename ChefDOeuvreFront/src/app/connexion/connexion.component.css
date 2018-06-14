@@ -1,0 +1,12 @@
+.connexion {    
+    font-size: 18px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.bouton {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+}

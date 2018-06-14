@@ -74,15 +74,19 @@ export class MaterielComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.edition) {
+    if (this.formatDate.valid && this.formatArticle.valid && this.formatParc.valid){
+     if (this.edition) {
       this.materielService.mettreAJourMateriel(this.materiel).subscribe(
         result=> {this.afficherMessage('Enregistrement effectué', '')},
         error => {this.afficherMessage('', 'Code parc déjà existant'); });
-    } else {
+     } else {
       this.materielService.ajouterMateriel(this.materiel).subscribe(
         result=> {this.afficherMessage('Enregistrement effectué', '')},
         error => {this.afficherMessage('', 'Code parc déjà existant'); });
     }
+  }
+  
+    else {this.afficherMessage('', 'La saisie d\'un ou plusieurs champs est non conforme'); }
   }
 
   afficherMessage(message:string, erreur: string){
@@ -122,10 +126,9 @@ export class MaterielComponent implements OnInit {
 
   supprimerMateriel() {
    if( confirm("Supprimer définitivement le matériel ?")) {
-     this.edition = false;
+    this.edition = false;
     this.materielService.supprimerMateriel(this.materiel.id_materiel).subscribe(
-      result=> {this.afficherMessage('Suppression effectuée', '')}
-     // cancel => {this.afficherMessage('', 'Suppression annulée'); }
+      result=> {this.afficherMessage('Suppression effectuée', '')},
     );
     this.clearInput();
    }

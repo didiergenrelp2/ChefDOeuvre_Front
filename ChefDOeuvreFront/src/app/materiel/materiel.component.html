@@ -113,8 +113,8 @@
   <br>
   <button class="mat-raised-button mat-primary" type="submit" [disabled]="!materielForm.valid">{{edition ? 'Modifier' : 'Créer'}}</button>
 
-  <button mat-raised-button (click)="cancelSelect()">Effacer</button>
-  <button mat-raised-button (click)="supprimerMateriel()">Supprimer</button>
+  <button type="button" mat-raised-button (click)="cancelSelect()">Effacer</button>
+  <button type="button" mat-raised-button (click)="supprimerMateriel()" [disabled]="!materielForm.valid">Supprimer</button>
 
 </form>
 </div>

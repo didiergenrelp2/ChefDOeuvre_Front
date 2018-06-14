@@ -27,7 +27,7 @@ h2 {
     /*top: 110px;
     width: 180px;
     overflow: visible;  */
-    width: 95%;
+    width: 90%;
 }
 .filtreTableMateriel{
     position: fixed;
@@ -48,6 +48,9 @@ h2 {
         width: 95%;
         overflow: auto;
         background: rgb(231, 231, 231);
+    }
+    .filtre{
+        width: 95%;
     }
     
 }

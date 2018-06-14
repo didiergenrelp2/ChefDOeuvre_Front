@@ -6,14 +6,16 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { MaterielComponent } from './materiel/materiel.component';
 import { BureauComponent } from './bureau/bureau.component';
+import { ConnexionComponent } from './connexion/connexion.component';
 import { PoserMaterielDansBureauComponent } from './poser-materiel-dans-bureau/poser-materiel-dans-bureau.component';
 
 const appRoutes: Routes = [
   { path: 'accueil', component: AccueilComponent },
+  { path: 'connexion', component: ConnexionComponent },
   { path: 'utilisateurs', component: UtilisateurComponent },
   { path: 'materiels', component: MaterielComponent },
   { path: 'bureaux', component: BureauComponent },
-  { path: '**', component: AccueilComponent}
+  { path: '**', component: AccueilComponent }
 ]
 
 @NgModule({

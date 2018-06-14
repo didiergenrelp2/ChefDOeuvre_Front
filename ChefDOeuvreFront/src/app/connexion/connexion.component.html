@@ -1,0 +1,62 @@
+<!--<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Connexion</h1>
+        <p class="text-xs-center">
+          <a [routerLink]="['/login']">Login</a>
+        </p>
+
+        <form (ngSubmit)="submitForm()">
+          <fieldset [disabled]="isSubmitting">
+            <fieldset class="form-group">
+             
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                formControlName="email"
+                placeholder="Email"
+                class="form-control form-control-lg"
+                type="text" />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                formControlName="password"
+                placeholder="Password"
+                class="form-control form-control-lg"
+                type="password" />
+            </fieldset>
+            <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+              Connexion
+            </button>
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>-->
+
+	<div class="connexion">
+				<form class="login100-form validate-form flex-sb flex-w">
+					
+					<span class="idRh">Identifiant</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "Identifiant requis">
+						<input class="input100" type="text" name="username" >
+					</div>
+					
+					<span class="mpd">Mot de passe</span>
+					<div class="wrap-input100 validate-input m-b-12" data-validate = "Mot de passe requis">
+						<input class="input100" type="password" name="pass" >						
+          </div>
+          
+          <br>
+					<div class="bouton">
+						<button class="mat-raised-button mat-primary">
+							Connexion
+						</button>
+					</div>
+
+				</form>
+	</div>

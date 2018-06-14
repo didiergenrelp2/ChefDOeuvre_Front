@@ -36,6 +36,7 @@ import { PoserMaterielDansBureauComponent } from './poser-materiel-dans-bureau/p
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ConnexionModule } from './connexion/connexion.module';
 
 import { SidenavService } from './sidenav.service';
 import { ApiService } from './api.service';
@@ -61,6 +62,7 @@ import { ListerMaterielDuBureauComponent } from './lister-materiel-du-bureau/lis
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ConnexionModule,
     FormsModule,
     FlexLayoutModule,
     MatButtonModule,

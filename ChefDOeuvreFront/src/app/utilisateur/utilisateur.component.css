@@ -4,6 +4,11 @@
     width: 100%;
 }
 
+h2 {
+    position: fixed;
+    top: 45px;
+    }
+
 .inputFullWidth{
     width: 100%;
 }
@@ -39,8 +44,14 @@ h2 {
     top: 13px;
 }
 
-.basDePage {
+/*.basDePage {
    position: fixed;
    bottom: 5%;
-   overflow: hidden;
+   overflow: auto;
 }
+.basDePageCM{
+    position: fixed;
+    bottom: 5%;
+    overflow: auto;
+    right: 10%;
+ }*/

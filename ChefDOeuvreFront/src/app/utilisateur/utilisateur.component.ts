@@ -57,7 +57,9 @@ export class UtilisateurComponent implements OnInit {
 
   onSubmit(){
     if(this.edition){
-      this.utilisateurService.mettreAJourUtilisateur(this.utilisateur).subscribe();
+      this.utilisateurService.mettreAJourUtilisateur(this.utilisateur).subscribe(
+        result=> {this.afficherMessage('Enregistrement effectué', '')},
+        error => {this.afficherMessage('', 'IdRH déjà existant'); });
     } else {
       this.utilisateurService.ajouterUtilisateur(this.utilisateur).subscribe();
     }
@@ -96,5 +98,6 @@ export class UtilisateurComponent implements OnInit {
   }
   else {
     this.afficherMessage('', 'Suppression annulée');
-   }}
+   }
+  }
 }

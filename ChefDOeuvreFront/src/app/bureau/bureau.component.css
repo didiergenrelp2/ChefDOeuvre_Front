@@ -26,13 +26,28 @@ h2 {
 .filtre{
   position: fixed;
   top: 100px;
-  width: 95%;
+  width: 90%;
   }
 .filtreTableauBureau{
   position: fixed;
   top: 140px;
-  bottom: 100px;
-  width: 95%;
+  bottom: 80px;
+  width: 90%;
   overflow: auto;
   background: rgb(231, 231, 231);
+}
+@media screen and (min-width: 768px) {
+  .filtreTableauBureau{
+    position: fixed;
+    top: 140px;
+    bottom: 100px;
+    width: 95%;
+    overflow: auto;
+    background: rgb(231, 231, 231);
+  }
+  .filtre{
+    position: fixed;
+    top: 100px;
+    width: 95%;
+}
 }
